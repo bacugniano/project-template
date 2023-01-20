@@ -1,0 +1,34 @@
+.nav {
+  display: flex;
+
+  &__list {
+    display: flex;
+  }
+  
+  &__item {
+    &:not(:last-child) {
+      margin-right: 46px;
+    }
+  }
+}
+
+@media (max-width: 670px) {
+  .nav {
+    position: relative;
+
+    &__list {
+      position: fixed;
+      flex-direction: column;
+      top: 0;
+      right: -500px;
+      padding-top: 25px;
+      background-color: #000;
+      width: 50%;
+      transition: all .3s ease-in-out;
+
+      &--active {
+        right: 0;
+      }
+    }
+  }
+}

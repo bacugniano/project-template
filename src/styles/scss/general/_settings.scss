@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -10,11 +11,12 @@ html {
 
 body {
   margin: 0;
-  font-family: 'UniNeue', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   color: $main;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #fff;
 
 }
 
@@ -48,6 +50,13 @@ p {
 
 }
 
+svg path {
+  fill: inherit;
+  stroke: inherit;
+  width: inherit;
+  height: inherit;
+}
+
 .visually-hidden {
 	position: absolute !important;
 	clip: rect(1px 1px 1px 1px);
@@ -59,9 +68,14 @@ p {
 	overflow: hidden;
 }
 
+.active {
+  overflow: hidden;
+}
+
 .container {
 
-  max-width: 1920px;
+  max-width: 1320px;
+  padding: 0 50px;
   margin: 0 auto;
 
 }

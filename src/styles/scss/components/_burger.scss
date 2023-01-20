@@ -30,7 +30,7 @@
     &.is-active &-inner,
     &.is-active &-inner::before,
     &.is-active &-inner::after {
-      background-color: #000; 
+      background-color: $main; 
     }  
   }
   
@@ -53,8 +53,8 @@
   
       width: 28px;
       height: 2px;
-      background-color: #000;
-    //   border-radius: 4px;
+      background-color: $main;
+      border-radius: 4px;
       position: absolute;
       transition-property: transform;
       transition-duration: 0.15s;
@@ -125,7 +125,7 @@
 
 }
 
-@media (max-width: 980px) {
+@media (max-width: 670px) {
 
   .nav {
 

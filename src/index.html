@@ -4,12 +4,73 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-  <link rel="shortcut icon" href="./favicon.jpg" type="image/x-icon">
+  <title>Title</title>
+  <link rel="shortcut icon" href="img/logo.svg" type="image/x-icon">
   <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
   
+  <header class="header">
+    <div class="header__logo">
+      <svg class="header__icon">
+        <use xlink:href="img/sprite.svg#logo"></use>
+      </svg>
+      Logo
+    </div>
+    <nav class="header__nav nav">
+      <ul class="nav__list">
+        <li class="nav__item"><a href="#welcome" class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="#about" class="nav__link">About us</a></li>
+        <li class="nav__item"><a href="#service" class="nav__link">Service</a></li>
+        <li class="nav__item"><a href="#prices" class="nav__link">Price</a></li>
+        <li class="nav__item"><a href="#contacts" class="nav__link">Contacts</a></li>
+      </ul>
+      
+      <button class="nav__burger nav__burger--spin" type="button">
+        <span class="nav__burger-box">
+            <span class="nav__burger-inner"></span>
+        </span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="main">
+    
+  </main>
+
+  <footer class="footer">
+    <ul class="footer__social-list">
+      <li class="footer__social-item">
+        <a class="footer__social-link" href="#">
+          <svg class="footer__icon">
+            <use xlink:href="img/sprite.svg#instagram"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="footer__social-item">
+        <a class="footer__social-link" href="#">
+          <svg class="footer__icon">
+            <use xlink:href="img/sprite.svg#facebook"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="footer__social-item">
+        <a class="footer__social-link" href="#">
+          <svg class="footer__icon">
+            <use xlink:href="img/sprite.svg#twitter"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="footer__social-item">
+        <a class="footer__social-link" href="#">
+          <svg class="footer__icon">
+            <use xlink:href="img/sprite.svg#pinterest"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </footer>
+
   <script src="js/main.min.js"></script>
 
 </body>

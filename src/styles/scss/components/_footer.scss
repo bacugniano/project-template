@@ -1,0 +1,20 @@
+.footer {
+
+  &__social-list {
+    display: flex;
+  }
+
+  &__social-item {
+    width: 32px;
+    height: 32px; 
+    
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  &__social-link {
+    width: inherit;
+    height: inherit;
+  }
+}
