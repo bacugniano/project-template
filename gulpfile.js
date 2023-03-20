@@ -16,38 +16,41 @@ const woff = require('gulp-ttf2woff')
 const woff2 = require('gulp-ttf2woff2')
 
 //пути к файлам
+const srcPath = 'src/';
+const distPath = 'dist/';
+
 const path = {
   html: {
-    src: 'src/*.html',
+    src: srcPath + '*.html',
     dest: 'dist/'
   },
   styles: {
-    src: 'src/styles/scss/**/*.scss',
+    src: srcPath + 'styles/scss/**/*.scss',
     dest: 'dist/css/'
   },
   js: {
-    src: 'src/js/*.js',
+    src: srcPath + 'js/*.js',
     dest: 'dist/js/'
   },
   images: {
-    src: 'src/img/**',
+    src: srcPath + 'img/**',
     dest: 'dist/img/'
   },
   svg: {
-    src: 'src/img/svg/*.svg',
+    src: srcPath + 'img/svg/*.svg',
     dest: 'dist/img/'
   },
   fonts: {
-    src: 'src/fonts/*.ttf',
+    src: srcPath + 'fonts/*.ttf',
     dest: 'dist/fonts/'
   }
 }
 
 //очистка папки dist
-const clean = () => del(['dist/*', '!dist/img', '!dist/fonts'])
+const clean = () => del([`${distPath}*`, `!${distPath}img`, `!${distPath}fonts`])
 
 //таск для sass
-const styles = () => {
+function styles() {
   return gulp.src(path.styles.src)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
@@ -65,9 +68,10 @@ const styles = () => {
 }
 
 //таск для скриптов
-const scripts = () => {
+function scripts() {
   return gulp.src(path.js.src)
     .pipe(sourcemaps.init())
+    .pipe(gulp.dest(path.js.dest))
     .pipe(babel({
       presets: ['@babel/env']
     }))
@@ -82,7 +86,7 @@ const scripts = () => {
 }
 
 //таск для сжатия изображений
-const img = () => {
+function img() {
   return gulp.src(path.images.src)
     .pipe(newer(path.images.dest))
     .pipe(imagemin([
@@ -98,7 +102,7 @@ const img = () => {
 }
 
 //таск для сжатия html
-const html = () => {
+function html() {
   return gulp.src(path.html.src)
     .pipe(htmlmin({
       collapseWhitespace: true
@@ -108,7 +112,7 @@ const html = () => {
 }
 
 //svg sprite
-const svg = () => {
+function svg() {
   return gulp.src(path.svg.src)
     .pipe(svgSprite({
       mode: {
@@ -139,7 +143,7 @@ const svg = () => {
 //конвертирование шрифтов
 // to woff
 
-const toWoff = () => {
+function toWoff() {
   return gulp.src(path.fonts.src)
     .pipe(newer(path.fonts.dest))
     .pipe(woff())
@@ -147,7 +151,7 @@ const toWoff = () => {
 }
 
 //to woff2
-const toWoff2 = () => {
+function toWoff2() {
   return gulp.src(path.fonts.src)
     .pipe(newer(path.fonts.dest))
     .pipe(woff2())
@@ -155,10 +159,10 @@ const toWoff2 = () => {
 }
 
 //вотчер
-const watch = () => {
+function watch() {
   browserSync.init({
     server: {
-      baseDir: "./dist"
+      baseDir: distPath
     }
   })
 
@@ -171,6 +175,6 @@ const watch = () => {
   gulp.watch(path.fonts.src, gulp.parallel(toWoff, toWoff2))
 }
 
-exports.svg = svg
+exports.clean = clean;
 
 exports.default = gulp.series(clean, html, gulp.parallel(styles, scripts, img, svg, toWoff, toWoff2), watch)
