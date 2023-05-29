@@ -22,27 +22,27 @@ const distPath = 'dist/';
 const path = {
   html: {
     src: srcPath + '*.html',
-    dest: 'dist/'
+    dest: distPath
   },
   styles: {
     src: srcPath + 'styles/scss/**/*.scss',
-    dest: 'dist/css/'
+    dest: `${distPath}css/`
   },
   js: {
     src: srcPath + 'js/*.js',
-    dest: 'dist/js/'
+    dest: `${distPath}js/`
   },
   images: {
     src: srcPath + 'img/**',
-    dest: 'dist/img/'
+    dest: `${distPath}img/`
   },
   svg: {
     src: srcPath + 'img/svg/*.svg',
-    dest: 'dist/img/'
+    dest: `${distPath}img/`
   },
   fonts: {
     src: srcPath + 'fonts/*.ttf',
-    dest: 'dist/fonts/'
+    dest: `${distPath}fonts/`
   }
 }
 
@@ -145,7 +145,7 @@ function svg() {
 
 function toWoff() {
   return gulp.src(path.fonts.src)
-    .pipe(newer(path.fonts.dest))
+    // .pipe(newer(path.fonts.dest))
     .pipe(woff())
     .pipe(gulp.dest(path.fonts.dest))
 }
@@ -153,7 +153,7 @@ function toWoff() {
 //to woff2
 function toWoff2() {
   return gulp.src(path.fonts.src)
-    .pipe(newer(path.fonts.dest))
+    // .pipe(newer(path.fonts.dest))
     .pipe(woff2())
     .pipe(gulp.dest(path.fonts.dest))
 }
@@ -172,9 +172,9 @@ function watch() {
   gulp.watch(path.js.src, scripts)
   gulp.watch(path.images.src, img)
   gulp.watch(path.svg.src, gulp.parallel(svg))
-  gulp.watch(path.fonts.src, gulp.parallel(toWoff, toWoff2))
+  // gulp.watch(path.fonts.src, gulp.parallel(toWoff, toWoff2))
 }
 
-exports.clean = clean;
+exports.fonts = gulp.parallel(toWoff, toWoff2);
 
-exports.default = gulp.series(clean, html, gulp.parallel(styles, scripts, img, svg, toWoff, toWoff2), watch)
+exports.default = gulp.series(clean, html, gulp.parallel(styles, scripts, img, svg), watch)
